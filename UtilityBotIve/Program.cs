@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Telegram.Bot;
 using UtilityBotIve;
+using UtilityBotIve.Controllers;
+using UtilityBotIve.Models;
 
 namespace UtilityBotIve
 {
@@ -28,6 +30,11 @@ namespace UtilityBotIve
         {
             services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient("6683326353:AAE6i2IFikPFv5a0dy1E1vvYvYSjbKHy16M"));
             services.AddHostedService<Bot>();
+            // Подключаем контроллеры сообщений и кнопок
+            services.AddTransient<InlineKeyboardController>();
+            services.AddTransient<TextMessageController>();
+            services.AddTransient<DefaultMessageController>();
+                    
         }
     }
 }
